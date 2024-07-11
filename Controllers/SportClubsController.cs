@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Lab5.Data;
 using Lab5.Models;
+using Lab5.Models.ViewModels;
 
 namespace Lab5.Controllers
 {
@@ -22,8 +23,13 @@ namespace Lab5.Controllers
         // GET: SportClubs
         public async Task<IActionResult> Index()
         {
-            return View(await _context.SportClubs.ToListAsync());
-        }
+            var viewModel = new NewsViewModel
+            {
+                SportsClubs = (await _context.SportClubs.ToListAsync()),
+            };
+            return View(viewModel);
+
+            }
 
         // GET: SportClubs/Details/5
         public async Task<IActionResult> Details(string id)

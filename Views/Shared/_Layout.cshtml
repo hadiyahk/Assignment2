@@ -3,16 +3,15 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="/StyleSheet.css" />
 </head>
 <body>
     <header>
         <nav>
             <ul>
                 <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-                <li><a asp-controller="Fan" asp-action="Index">Fan</a></li>
-                <li><a asp-controller="SportClub" asp-action="Index">Sport Club</a></li>
-              
+                <li><a asp-controller="Fans" asp-action="Index">Fan</a></li>
+                <li><a asp-controller="SportClubs" asp-action="Index">Sport Club</a></li>
             </ul>
         </nav>
     </header>
@@ -24,9 +23,8 @@
     <footer>
         <p>Lab5</p>
         <p>Khan0465@algonquinlive.com</p>
-       
     </footer>
 
-    <script src="~/js/site.js"></script>
+    <script src="~/js/site.js"></script> <!-- Your JavaScript file -->
 </body>
 </html>

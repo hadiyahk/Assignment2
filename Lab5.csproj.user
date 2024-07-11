@@ -13,5 +13,6 @@
     <WebStackScaffolding_DbContextTypeFullName>Lab5.Data.SportsDbContext</WebStackScaffolding_DbContextTypeFullName>
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
     <WebStackScaffolding_IsViewGenerationSelected>True</WebStackScaffolding_IsViewGenerationSelected>
+    <NameOfLastUsedPublishProfile>C:\Users\Hadiy\source\repos\Lab5\Lab5\Properties\PublishProfiles\HadiyahLab5 - Web Deploy.pubxml</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>

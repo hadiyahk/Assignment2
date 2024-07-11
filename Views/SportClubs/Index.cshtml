@@ -7,28 +7,60 @@
 <h1>Index</h1>
 
 <h2>Sport Clubs</h2>
-
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
 <table class="table">
     <thead>
         <tr>
-            <th>Title</th>
-            <th>Subscribed Fans</th>
+            <th>
+                @Html.DisplayNameFor(model => model.SportsClubs.FirstOrDefault().Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SportsClubs.FirstOrDefault().Fee)
+            </th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var sportClub in Model.SportsClubs)
+        @foreach (var SportClub in Model.SportsClubs)
         {
             <tr>
-                <td>@sportClub.Title</td>
                 <td>
-                    <ul>
-                        @foreach (var subscription in Model.Subscriptions.Where(s => s.SportClubId == sportClub.Id))
-                        {
-                            <li>@subscription.Fan.FullName</li>
-                        }
-                    </ul>
+                    @Html.DisplayFor(modelItem => SportClub.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => SportClub.Fee)
+                </td>
+ 
+                <td>
+                    <a asp-action="Edit" asp-route-id="@SportClub.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@SportClub.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@SportClub.Id">Delete</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+
+@if (Model.Subscriptions != null && Model.Fans != null)
+{
+    foreach (var sportClub in Model.SportsClubs)
+    {
+        var subscribedFans = Model.Subscriptions
+                                   .Where(s => s.SportClubId == sportClub.Id)
+                                   .Select(s => s.Fan)
+                                   .ToList();
+
+        <div id="fans-@sportClub.Id" style="display: none;">
+            <h3>@sportClub.Title - Subscribed Fans</h3>
+            <ul>
+                @foreach (var fan in subscribedFans)
+                {
+                    <li>@fan.FullName</li> 
+                }
+            </ul>
+        </div>
+    }
+}
