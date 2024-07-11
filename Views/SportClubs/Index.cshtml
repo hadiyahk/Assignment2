@@ -1,0 +1,34 @@
+﻿@model Lab5.Models.ViewModels.NewsViewModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<h2>Sport Clubs</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Subscribed Fans</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var sportClub in Model.SportsClubs)
+        {
+            <tr>
+                <td>@sportClub.Title</td>
+                <td>
+                    <ul>
+                        @foreach (var subscription in Model.Subscriptions.Where(s => s.SportClubId == sportClub.Id))
+                        {
+                            <li>@subscription.Fan.FullName</li>
+                        }
+                    </ul>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

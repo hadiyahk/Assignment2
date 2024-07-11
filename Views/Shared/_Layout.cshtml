@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                <li><a asp-controller="Fan" asp-action="Index">Fan</a></li>
+                <li><a asp-controller="SportClub" asp-action="Index">Sport Club</a></li>
+              
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        @RenderBody()
+    </div>
+
+    <footer>
+        <p>Lab5</p>
+        <p>Khan0465@algonquinlive.com</p>
+       
+    </footer>
+
+    <script src="~/js/site.js"></script>
+</body>
+</html>
