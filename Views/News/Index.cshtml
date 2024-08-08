@@ -1,0 +1,29 @@
+﻿@model Lab5.Models.ViewModels.NewsViewModel
+
+<h1>News for SportsClub @Model.SportClubId</h1>
+
+<p>
+    <a asp-action="Create" asp-route-id="@Model.SportClubId">Add New News</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Image</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var newsItem in Model.NewsItems)
+        {
+            <tr>
+                <td>@newsItem.Title</td>
+                <td><img src="@newsItem.ImageUrl" alt="Image" style="width:100px;" /></td>
+                <td>
+                    <a asp-action="Delete" asp-route-id="@newsItem.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

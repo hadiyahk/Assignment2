@@ -1,0 +1,28 @@
+﻿@model Lab5.Models.ViewModels.FanSubscriptionViewModel
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "View Subscriptions";
+}
+
+<h1>Subscriptions for @Model.Fan.FirstName @Model.Fan.LastName</h1>
+
+<p><strong>Fan ID:</strong> @Model.FanId</p>
+
+@if (Model.Subscriptions != null && Model.Subscriptions.Any())
+{
+    <ul>
+        @foreach (var subscription in Model.Subscriptions)
+        {
+            <li>@subscription.Title</li>
+        }
+    </ul>
+}
+else
+{
+    <p>No subscriptions found.</p>
+}
+
+<p>
+    <a asp-action="Index">Back to List</a>
+</p>

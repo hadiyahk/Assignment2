@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Lab5.Models.ViewModels.SportClubSubscriptionViewModel>
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Edit Subscriptions";
+}
+
+<h1>Edit Subscriptions</h1>
+
+<form asp-action="EditSubscriptions" method="post">
+    <div>
+        @foreach (var subscription in Model)
+        {
+            <div>
+                <input type="checkbox" name="subscriptions" value="@subscription.SportClubId"
+                @(subscription.IsMember ? "checked" : "") />
+                <label>@subscription.Title</label>
+            </div>
+        }
+    </div>
+    <input type="submit" value="Save Changes" />
+</form>

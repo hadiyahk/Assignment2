@@ -9,5 +9,7 @@
         public Fan Fan { get; set; }
         public SportClub SportClub { get; set; }
 
+
+
     }
 }

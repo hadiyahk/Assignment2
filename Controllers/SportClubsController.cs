@@ -21,12 +21,19 @@ namespace Lab5.Controllers
         }
 
         // GET: SportClubs
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string? id)
         {
             var viewModel = new NewsViewModel
             {
                 SportsClubs = (await _context.SportClubs.ToListAsync()),
             };
+
+            if (id == null)
+            {
+                viewModel.Fans = await _context.Subscriptions.Where(s=>s.SportClubId==id).Select(s=>s.Fan).ToListAsync();
+            }
+
+
             return View(viewModel);
 
             }
@@ -159,5 +166,32 @@ namespace Lab5.Controllers
         {
             return _context.SportClubs.Any(e => e.Id == id);
         }
+
+
+        public async Task<IActionResult> News(int id)
+        {
+            var sportClub = await _context.SportClubs
+                .Include(sc => sc.News)
+                .FirstOrDefaultAsync(sc => sc.Id == id);
+
+            if (sportClub == null)
+            {
+                return NotFound();
+            }
+
+            var viewModel = new NewsViewModel
+            {
+                SportClubId = sportClub.Id,
+                NewsItems = sportClub.News.Select(n => new NewsViewModel
+                {
+                    Id = n.Id,
+                    Title = n.Title,
+                    ImageUrl = n.ImageUrl
+                }).ToList()
+            };
+
+            return View(viewModel);
+        }
+
     }
 }
